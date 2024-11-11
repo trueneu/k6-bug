@@ -1,0 +1,21 @@
+;; shadow-cljs configuration
+{:lein {:profile "+default"}
+
+ :builds
+ {:release {:target           :esm
+            :output-dir       "dist"
+            :js-options       {:keep-as-import #{"k6" "k6/http"}}
+            :modules          {:main {:exports {default k6-bug.core/default
+                                                options k6-bug.core/options
+                                                setup   k6-bug.core/setup}}}
+            :compiler-options {:optimizations      :advanced
+                               :output-feature-set :es5}}
+
+  :debug {:target           :esm
+          :output-dir       "dist"
+          :js-options       {:keep-as-import #{"k6" "k6/http"}}
+          :modules          {:main {:exports {default k6-bug.core/default
+                                              options k6-bug.core/options
+                                              setup   k6-bug.core/setup}}}
+          :compiler-options {:optimizations      :whitespace
+                             :output-feature-set :es5}}}}
